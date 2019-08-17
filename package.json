@@ -1,5 +1,5 @@
 {
-  "name": "safelyjs",
+  "name": "safely-js",
   "version": "1.0.0",
   "main": "build/index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "test": "jest",
     "test:watch": "jest --watch"
   },
-  "repository": "https://github.com/jonasthiesen/safely",
+  "repository": "https://github.com/jonasthiesen/safely-js",
   "author": "Jonas Thiesen <jonas.k.thiesen@gmail.com>",
   "license": "MIT",
   "devDependencies": {

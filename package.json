@@ -1,0 +1,23 @@
+{
+  "name": "safely",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "yarn build:watch",
+    "build": "babel src -d build --ignore **/*.test.js",
+    "build:watch": "babel src -w -d build --ignore **/*.test.js",
+    "prepublishOnly": "yarn build",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "repository": "https://github.com/jonasthiesen/safely",
+  "author": "Jonas Thiesen <jonas.k.thiesen@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "babel-jest": "^24.9.0",
+    "jest": "^24.9.0"
+  }
+}

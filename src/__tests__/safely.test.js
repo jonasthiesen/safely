@@ -25,4 +25,31 @@ describe('safely', () => {
     // And the safe version doesn't
     expect(safeLowerCase(num)).toBeNull()
   })
+
+  it('takes an optional callback that gets called when the function throws', () => {
+    const safeLowerCase = safely(lowerCase, () => '-')
+
+    expect(safeLowerCase(5)).toEqual('-')
+  })
+
+  it('can log the error and continue', () => {
+    const errorMessage = (() => {
+      let msg = null
+      try {
+        lowerCase(5)
+      } catch (error) {
+        msg = error
+      }
+      return msg
+    })()
+
+    let loggerValue = null
+    const logger = value => { loggerValue = value }
+
+    const safeLowerCase = safely(lowerCase, logger)
+
+    safeLowerCase(5)
+
+    expect(loggerValue).toEqual(errorMessage)
+  })
 })

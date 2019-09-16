@@ -9,12 +9,16 @@
  * @param {any} args The arguments to pass to the function (action).
  * @returns {any} The new data or `null`.
  */
-export const safely = fn => (...args) => {
+export const safely = (fn, handleError = null) => (...args) => {
   let result = null
 
   try {
     result = fn(...args)
-  } catch (error) {}
+  } catch (error) {
+    if (handleError !== null) {
+      result = handleError(error)
+    }
+  }
 
   return result
 }

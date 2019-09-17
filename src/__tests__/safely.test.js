@@ -52,4 +52,18 @@ describe('safely', () => {
 
     expect(loggerValue).toEqual(errorMessage)
   })
+
+  it('supplies the values in the error callback', () => {
+    const value = 5
+    let valuesFromError = null
+    const safeLowerCase = safely(lowerCase, (error, values) => { valuesFromError = values })
+
+    // Expect the argument to be the same value
+    safeLowerCase(value)
+    expect(valuesFromError).toEqual([value])
+
+    // Expect to see the same amount of arguments
+    safeLowerCase(1, 2, 3, 4)
+    expect(valuesFromError.length).toEqual(4)
+  })
 })

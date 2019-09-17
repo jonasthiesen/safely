@@ -16,7 +16,7 @@ export const safely = (fn, handleError = null) => (...args) => {
     result = fn(...args)
   } catch (error) {
     if (handleError !== null) {
-      result = handleError(error)
+      result = handleError(error, args)
     }
   }
 

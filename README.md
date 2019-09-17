@@ -47,3 +47,19 @@ const safeLowerCaseLogger = safely(dangerousLowerCase, error => logger(error))
 safeLowerCase(null)       // n/a
 safeLowerCaseLogger(null) // undefined (logs the error)
 ```
+
+When doing some error handling, it might be relevant to know what the value was. This could be useful for logging, but maybe you want it to be handled a specific way depending on the value.
+
+## Example
+```js
+const handleError = (error, value) => {
+  if (value === '-') {
+    return 0
+  }
+  
+  console.log(`Error caused by: ${value}`, error)
+}
+
+const processResponse = item => Number(item)
+const safeProcessResponse = safely(processResponse, (error, ([value])) => handleError(error, value))
+```

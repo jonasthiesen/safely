@@ -53,13 +53,12 @@ When doing some error handling, it might be relevant to know what the value was.
 ## Example
 ```js
 const handleError = (error, value) => {
-  if (value === '-') {
-    return 0
-  }
-  
   console.log(`Error caused by: ${value}`, error)
 }
 
-const processResponse = item => Number(item)
+const processResponse = obj => obj.response.data.number
 const safeProcessResponse = safely(processResponse, (error, ([value])) => handleError(error, value))
+
+const apiResponse = { response: null }
+safeProcessResponse(apiResponse) // undefined (logs the error together with the value)
 ```
